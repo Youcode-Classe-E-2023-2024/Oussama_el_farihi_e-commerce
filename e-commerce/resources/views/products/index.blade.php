@@ -18,6 +18,8 @@
         </div>
         @endif
         <a href="{{ route('product.create') }}" class="btn btn-primary mb-3">Add Product</a>
+        <a href="{{ route('product.index', ['sort' => 'name']) }}">Sort Alphabetically</a>
+        <a href="{{ route('product.index', ['sort' => 'created_at']) }}">Sort by Date</a>
         <div class="row">
             @foreach($products as $product)
             <div class="col-md-4 mb-4">
@@ -42,7 +44,7 @@
             @endforeach
         </div>
         <div class="d-flex justify-content-center">
-            {{ $products->links() }}
+        {{ $products->appends(['sort' => request('sort')])->links() }}
         </div>
     </div>
 

@@ -8,8 +8,11 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index(){
-        $products = Product::paginate(6);
+    public function index(Request $request){
+        $sort = $request->input('sort', 'created_at');
+
+        $products = Product::orderBy($sort, 'asc')->paginate(6);
+
         return view('products.index', ['products' => $products]);
     }
 
