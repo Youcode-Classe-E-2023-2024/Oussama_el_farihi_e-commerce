@@ -3,46 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
+    <title>Product Index</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Product index</h1>
-    @if(session()->has('success'))
-    <div>
-       {{session('success')}}
-    </div>
-    @endif
-    <div>
-        <table border="1">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Qty</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
+    <div class="container mt-5">
+        <h1>Product Index</h1>
+        @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+        @endif
+        <a href="{{ route('product.create') }}" class="btn btn-primary mb-3">Add Product</a>
+        <div class="row">
             @foreach($products as $product)
-            <tr>
-                <td>{{$product->id}}</td>
-                <td>{{$product->name}}</td>
-                <td>{{$product->qty}}</td>
-                <td>{{$product->price}}</td>
-                <td>{{$product->description}}</td>
-                <td>
-                    <a href="{{route('product.edit', ['product' => $product])}}">Edit</a>
-                </td>
-                <td>
-                    <form action="{{route('product.delete', ['product' => $product])}}" method="post">
-                        @csrf
-                        @method('delete')
-                    <input type="submit" value="Delete">
-                    </form>
-                </td>
-            </tr>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="product_image_url_here" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $product->name }}</h5>
+                        <p class="card-text">{{ $product->description }}</p>
+                        <p class="card-text">Quantity: {{ $product->qty }}</p>
+                        <p class="card-text">Price: {{ $product->price }}</p>
+                        <a href="{{ route('product.edit', ['product' => $product]) }}" class="btn btn-primary">Edit</a>
+                        <form action="{{ route('product.delete', ['product' => $product]) }}" method="post" class="d-inline">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
             @endforeach
-        </table>
+        </div>
     </div>
+    
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
