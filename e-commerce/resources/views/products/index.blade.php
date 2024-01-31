@@ -35,6 +35,7 @@
                             @method('delete')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                        <a href="{{ route('product.show', ['product' => $product]) }}" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
