@@ -23,12 +23,13 @@
             </div>
             @endif
         </div>
-        <form method="POST" action="{{ route('product.update', ['product' => $product]) }}">
+        <form method="POST" action="{{ route('product.update', ['product' => $product]) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{$product->name}}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name"
+                    value="{{$product->name}}">
             </div>
             <div class="form-group">
                 <label for="qty">Qty</label>
@@ -36,11 +37,17 @@
             </div>
             <div class="form-group">
                 <label for="price">Price</label>
-                <input type="text" class="form-control" id="price" name="price" placeholder="Price" value="{{$product->price}}">
+                <input type="text" class="form-control" id="price" name="price" placeholder="Price"
+                    value="{{$product->price}}">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="{{$product->description}}">
+                <input type="text" class="form-control" id="description" name="description" placeholder="Description"
+                    value="{{$product->description}}">
+            </div>
+            <div class="form-group">
+                <label for="image">Product Image</label>
+                <input type="file" class="form-control" id="image" name="image">
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Update</button>

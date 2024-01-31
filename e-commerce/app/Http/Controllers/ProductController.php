@@ -24,7 +24,14 @@ class ProductController extends Controller
             'qty' => 'required|numeric',
             'price' => 'required|numeric',
             'description' => 'nullable',
+            'image' => 'nullable|image|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('images'), $imageName);
+            $data['image'] = $imageName;
+        }
     
         $newProduct = Product::create($data);
     
@@ -41,7 +48,14 @@ class ProductController extends Controller
             'qty' => 'required|numeric',
             'price' => 'required|numeric',
             'description' => 'nullable',
+            'image' => 'nullable|image|max:2048',
         ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();  
+            $request->image->move(public_path('images'), $imageName);
+            $data['image'] = $imageName;
+        }
 
         $product->update($data);
 
