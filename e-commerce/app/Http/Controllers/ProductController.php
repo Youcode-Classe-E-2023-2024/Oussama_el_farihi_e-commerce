@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function index(Request $request){
         $sort = $request->input('sort', 'created_at');
 
-        $products = Product::orderBy($sort, 'asc')->paginate(6);
+        $products = Product::orderBy($sort, 'asc')->paginate(6)->withPath('product');
 
         return view('products.index', ['products' => $products]);
     }
