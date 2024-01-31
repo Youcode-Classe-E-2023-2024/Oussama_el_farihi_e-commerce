@@ -41,7 +41,9 @@
             </div>
             @endforeach
         </div>
-        {{ $products->links() }}
+        <div class="d-flex justify-content-center">
+            {{ $products->links() }}
+        </div>
     </div>
 
     <!-- Include Bootstrap JS and jQuery -->
