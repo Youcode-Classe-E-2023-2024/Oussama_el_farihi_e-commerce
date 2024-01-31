@@ -11,10 +11,10 @@
     <div class="container mt-5">
         <h1>{{ $product->name }}</h1>
         <img src="{{ asset('images/' . $product->image) }}" alt="Product Image">
+        <p>Created_at: {{ $product->created_at }}</p>
         <p>Description: {{ $product->description }}</p>
         <p>Quantity: {{ $product->qty }}</p>
         <p>Price: {{ $product->price }}</p>
-        <!-- Add more details as needed -->
     </div>
 </body>
 </html>
